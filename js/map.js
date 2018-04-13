@@ -38,7 +38,7 @@ var chooseFeatures = function (arr) {
   return massNew;
 };
 
-var chooseType = function (arr, offer, title, titles, types) {
+var chooseType = function (arr, offer, title) {
   for (var i = 0; i < ADDS_COUNT; i++) {
     if (arr[i]['offer']['title'] === titles[0] || arr[i]['offer']['title'] === titles[1]) {
       return types[0];
@@ -54,7 +54,7 @@ var chooseType = function (arr, offer, title, titles, types) {
     }
   }
 };
- 
+
 var massAdds = [];
 var fillMassAdds = function () {
   for (var i = 0; i < ADDS_COUNT; i++) {
@@ -64,7 +64,7 @@ var fillMassAdds = function () {
         title: titles[i],
         address: addresses[i],
         price: getRandomInt(1000, 1000000),
-        type: chooseType(massAdds, offer, title, titles, types),
+        type: chooseType(massAdds, offer, title),
         rooms: getRandomInt(1, 5),
         guests: getRandomInt(1, 30),
         checking: chooseRandom(times),
@@ -85,7 +85,7 @@ fillMassAdds();
 
 var mapShow = document.querySelector('.map');
 mapShow.classList.remove('map--faded');
- 
+
 var similarListElement = document.querySelector('.map__pins');
 var similarMapPinTemplate = document.querySelector('.map__card').content.querySelector('.map__pin');
 
@@ -133,7 +133,7 @@ var createAdvert = function (massAdds) {
 
 var block = document.querySelector('.map__filters-container');
 var putElementInContainer = function () {
-block.insertAdjacentHTML('beforebegin', createAdvert (massAdds[0]));
+block.insertAdjacentHTML('beforebegin', createAdvert(massAdds[0]));
 return block;
 };
 putElementInContainer();
