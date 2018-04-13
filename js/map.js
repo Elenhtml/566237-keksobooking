@@ -26,26 +26,45 @@ var chooseRandom = function (arr) {
   return choice;
 };
 
+var chooseRandomFeatures = function (arr) {
+  var choice = arr[Math.floor(Math.random() * (arr.length - 1))];
+  return choice;
+};
+
 var massNew = [];
 var chooseFeatures = function (arr) {
   massNew = arr.slice();
-  massNew.length = chooseRandom(massNew);
+  massNew.splice(chooseRandomFeatures(massNew), 1);
   return massNew;
 };
 
+var chooseType = function (arr, offer, title, titles, types) {
+  for (var i = 0; i < ADDS_COUNT; i++) {
+    if (arr[i]['offer']['title'] === titles[0] || arr[i]['offer']['title'] === titles[1]) {
+      return types[0];
+    }
+    if (arr[i]['offer']['title'] === titles[2] || arr[i]['offer']['title'] === titles[3]) {
+      return types[1];
+    }
+    if (arr[i]['offer']['title'] === titles[4] || arr[i]['offer']['title'] === titles[5]) {
+      return types[2];
+    }
+    if (arr[i]['offer']['title'] === titles[6] || arr[i]['offer']['title'] === titles[7]) {
+      return types[3];
+    }
+  }
+};
+ 
 var massAdds = [];
 var fillMassAdds = function () {
-  for (var i=0; i < ADDS_COUNT; i++) {
+  for (var i = 0; i < ADDS_COUNT; i++) {
     massAdds[i] = {
       author: avatars[i],
       offer: {
         title: titles[i],
         address: addresses[i],
         price: getRandomInt(1000, 1000000),
-        type: 'flat',/*??? if (offer.title===titles[0] || offer.title===titles[1]) {offer.type===types[0]},
-          if (offer.title===titles[2] || offer.title===titles[3]) {offer.type===types[1]},
-          if (offer.title===titles[4] || offer.title===titles[5]) {offer.type===types[2]},
-          if (offer.title===titles[6] || offer.title===titles[7]) {offer.type===types[3]},*/
+        type: chooseType(massAdds, offer, title, titles, types),
         rooms: getRandomInt(1, 5),
         guests: getRandomInt(1, 30),
         checking: chooseRandom(times),
@@ -58,8 +77,8 @@ var fillMassAdds = function () {
         x: getRandomInt(300, 900),
         y: getRandomInt(150, 500)
       }
-    }
-  }  
+    };
+  }
   return massAdds;
 };
 fillMassAdds();
@@ -69,18 +88,18 @@ mapShow.classList.remove('map--faded');
  
 var similarListElement = document.querySelector('.map__pins');
 var similarMapPinTemplate = document.querySelector('.map__card').content.querySelector('.map__pin');
- 
+
 var createMapPin = function (mapPin) {
   var mapPinElement = similarMapPinTemplate.cloneNode(true);
-  mapPinElement.querySelector('.map__pin').style = 'left: ' + (massAdds.location.x - MAP_PIN_WIDTH/2) + 'px;' + 'top: ' + (massAdds.location.y - MAP_PIN_HEIGHT) + 'px;';
+  mapPinElement.querySelector('.map__pin').style = 'left: ' + (massAdds.location.x - MAP_PIN_WIDTH / 2) + 'px;' + 'top: ' + (massAdds.location.y - MAP_PIN_HEIGHT) + 'px;';
   mapPinElement.querySelector('img').src = mapPin.author;
   mapPinElement.querySelector('img').alt = mapPin.title;
   return mapPinElement;
 };
- 
+
 var fragment = document.createDocumentFragment();
 var setAllElements = function (arr) {
-  for (var i=0; i < arr.length; i++) {
+  for (var i = 0; i < arr.length; i++) {
     fragment.appendChild(createMapPin(arr[i]));
   }
   return fragment;
@@ -89,7 +108,7 @@ setAllElements(massAdds);
 
 similarListElement.appendChild(fragment);
 mapShow.querySelector('.map').classList.remove('map--faded');
- 
+
 var similarAdvertTemplate = document.querySelector('.map__card').content;
 var createAdvert = function (massAdds) {
   var advertElement = similarAdvertTemplate.cloneNode(true);
@@ -100,21 +119,21 @@ var createAdvert = function (massAdds) {
   advertElement.querySelector('.popup__text--capacity').textContent = massAdds.offer.rooms + 'комнаты для ' + massAdds.offer.guests + 'гостей';
   advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + massAdds.offer.checking + ', выезд до ' + massAdds.offer.checkout;
   var featureItems = advertElement.queryselectorAll('.popup__feature');
-  for (var i=0; i < massAdds.offer.features.length; i++) {
+  for (var i = 0; i < massAdds.offer.features.length; i++) {
     featureItems[i].appendChild(massAdds.offer.features[i]);
   }
   advertElement.querySelector('.popup__description').textContent = massAdds.offer.description;
   advertElement.querySelector('.popup__photos').querySelector('img').src = photosAll[0];
-  for (i=1; i<photosAll.length; i++) {
+  for (i = 1; i < photosAll.length; i++) {
     advertElement.querySelector('.popup__photos').appendChild('img').classList.add('popup__photo').src = photosAll[i];
   }
-  avertElement.querySelector('.popup__avatar').src = massAds.author;
+  advertElement.querySelector('.popup__avatar').src = massAdds.author;
   return advertElement;
 };
- 
+
 var block = document.querySelector('.map__filters-container');
 var putElementInContainer = function () {
-block.insertAdjacentHTML('beforebegin', createAdvert(massAdds[0]));
+block.insertAdjacentHTML('beforebegin', createAdvert (massAdds[0]));
 return block;
 };
 putElementInContainer();
