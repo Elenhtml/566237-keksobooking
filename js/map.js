@@ -1,8 +1,8 @@
 'use strict';
 
 var ADDS_COUNT = 8;
-var MAP_PIN_WIDTH = 40;
-var MAP_PIN_HEIGHT = 40;
+//var MAP_PIN_WIDTH = 40;
+//var MAP_PIN_HEIGHT = 40;
 var avatars = ['img/avatars/user01.png', 'img/avatars/user02.png', 'img/avatars/user03.png', 'img/avatars/user04.png', 'img/avatars/user05.png', 'img/avatars/user06.png', 'img/avatars/user07.png', 'img/avatars/user08.png'];
 var titles = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
 var addresses = ['600, 350', '350, 600', '1000, 700', '1100, 350', '900, 550', '800, 400', '500, 550', '200, 700'];
@@ -38,7 +38,7 @@ var chooseFeatures = function (arr) {
   return massNew;
 };
 
-/*var chooseType = function (arr, offer, title) {
+/* var chooseType = function (arr, offer, title) {
   for (var i = 0; i < ADDS_COUNT; i++) {
     if (arr[i]['offer']['title'] === titles[0] || arr[i]['offer']['title'] === titles[1]) {
       return types[0];
@@ -64,7 +64,7 @@ var fillMassAdds = function () {
         title: titles[i],
         address: addresses[i],
         price: getRandomInt(1000, 1000000),
-        type: /*chooseType(massAdds, offer, title),*/chooseRandom(types),
+        type: /* chooseType(massAdds, offer, title),*/chooseRandom(types),
         rooms: getRandomInt(1, 5),
         guests: getRandomInt(1, 30),
         checking: chooseRandom(times),
@@ -74,7 +74,7 @@ var fillMassAdds = function () {
         photos: photosAll
       },
       location: {
-        'x': getRandomInt(300, 900),
+        x: getRandomInt(300, 900),
         y: getRandomInt(150, 500)
       }
     };
@@ -91,7 +91,7 @@ var similarMapPinTemplate = document.querySelector('template').content.querySele
 
 var createMapPin = function (mapPin) {
   var mapPinElement = similarMapPinTemplate.cloneNode(true);
-  //mapPinElement.querySelector('.map__pin').style = 'left: ' + (massAdds.location.x - MAP_PIN_WIDTH / 2) + 'px;' + 'top: ' + (massAdds.location.y - MAP_PIN_HEIGHT) + 'px;';
+  // mapPinElement.querySelector('.map__pin').style = 'left: ' + (massAdds.location.x - MAP_PIN_WIDTH / 2) + 'px;' + 'top: ' + (massAdds.location.y - MAP_PIN_HEIGHT) + 'px;';
   mapPinElement.querySelector('img').src = mapPin.author;
   mapPinElement.querySelector('img').alt = mapPin.title;
   return mapPinElement;
@@ -107,7 +107,7 @@ var setAllElements = function (arr) {
 setAllElements(massAdds);
 
 similarListElement.appendChild(fragment);
-//mapShow.querySelector('.map').classList.remove('map--faded');
+// mapShow.querySelector('.map').classList.remove('map--faded');
 
 var similarAdvertTemplate = document.querySelector('template').content.querySelector('.map__card');
 var createAdvert = function (massAdds) {
@@ -126,12 +126,12 @@ var createAdvert = function (massAdds) {
     }
     return featureItems;
   };
-  //advertElement.featuresForFill.appendChild(fillInPopUpFeature());
+  // advertElement.featuresForFill.appendChild(fillInPopUpFeature());
   advertElement.querySelector('.popup__description').textContent = massAdds.offer.description;
   advertElement.querySelector('.popup__photos').querySelector('img').src = photosAll[0];
   for (var i = 1; i < photosAll.length; i++) {
     advertElement.querySelector('.popup__photos').appendChild('img').classList.add('popup__photo').src = photosAll[i];
-  }  
+  }
   advertElement.querySelector('.popup__avatar').src = massAdds.author;
   return advertElement;
 };
