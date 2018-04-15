@@ -38,7 +38,7 @@ var chooseFeatures = function (arr) {
   return massNew;
 };
 
-var chooseType = function (arr, offer, title) {
+/*var chooseType = function (arr, offer, title) {
   for (var i = 0; i < ADDS_COUNT; i++) {
     if (arr[i]['offer']['title'] === titles[0] || arr[i]['offer']['title'] === titles[1]) {
       return types[0];
@@ -53,7 +53,7 @@ var chooseType = function (arr, offer, title) {
       return types[3];
     }
   }
-};
+};*/
 
 var massAdds = [];
 var fillMassAdds = function () {
@@ -64,7 +64,7 @@ var fillMassAdds = function () {
         title: titles[i],
         address: addresses[i],
         price: getRandomInt(1000, 1000000),
-        type: chooseType(massAdds, offer, title),
+        type: /*chooseType(massAdds, offer, title),*/chooseRandom(types),
         rooms: getRandomInt(1, 5),
         guests: getRandomInt(1, 30),
         checking: chooseRandom(times),
@@ -74,7 +74,7 @@ var fillMassAdds = function () {
         photos: photosAll
       },
       location: {
-        x: getRandomInt(300, 900),
+        'x': getRandomInt(300, 900),
         y: getRandomInt(150, 500)
       }
     };
@@ -87,11 +87,11 @@ var mapShow = document.querySelector('.map');
 mapShow.classList.remove('map--faded');
 
 var similarListElement = document.querySelector('.map__pins');
-var similarMapPinTemplate = document.querySelector('.map__card').content.querySelector('.map__pin');
+var similarMapPinTemplate = document.querySelector('template').content.querySelector('.map__pin');
 
 var createMapPin = function (mapPin) {
   var mapPinElement = similarMapPinTemplate.cloneNode(true);
-  mapPinElement.querySelector('.map__pin').style = 'left: ' + (massAdds.location.x - MAP_PIN_WIDTH / 2) + 'px;' + 'top: ' + (massAdds.location.y - MAP_PIN_HEIGHT) + 'px;';
+  //mapPinElement.querySelector('.map__pin').style = 'left: ' + (massAdds.location.x - MAP_PIN_WIDTH / 2) + 'px;' + 'top: ' + (massAdds.location.y - MAP_PIN_HEIGHT) + 'px;';
   mapPinElement.querySelector('img').src = mapPin.author;
   mapPinElement.querySelector('img').alt = mapPin.title;
   return mapPinElement;
@@ -107,26 +107,31 @@ var setAllElements = function (arr) {
 setAllElements(massAdds);
 
 similarListElement.appendChild(fragment);
-mapShow.querySelector('.map').classList.remove('map--faded');
+//mapShow.querySelector('.map').classList.remove('map--faded');
 
-var similarAdvertTemplate = document.querySelector('.map__card').content;
+var similarAdvertTemplate = document.querySelector('template').content.querySelector('.map__card');
 var createAdvert = function (massAdds) {
   var advertElement = similarAdvertTemplate.cloneNode(true);
   advertElement.querySelector('.popup__title').textContent = massAdds.offer.title;
   advertElement.querySelector('.popup__text--address').textContent = massAdds.offer.address;
   advertElement.querySelector('.popup__text--price').textContent = massAdds.offer.price + '=/ночь';
-  advertElement.querySelector('.popup__type').textContent = typeChoice.massAdds.offer.type;
+  advertElement.querySelector('.popup__type').textContent = typeChoice[massAdds.offer.type];
   advertElement.querySelector('.popup__text--capacity').textContent = massAdds.offer.rooms + 'комнаты для ' + massAdds.offer.guests + 'гостей';
   advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + massAdds.offer.checking + ', выезд до ' + massAdds.offer.checkout;
-  var featureItems = advertElement.queryselectorAll('.popup__feature');
-  for (var i = 0; i < massAdds.offer.features.length; i++) {
-    featureItems[i].appendChild(massAdds.offer.features[i]);
-  }
+  var featuresForFill = document.querySelector('.popup__features');
+  var featureItems = advertElement.querySelectorAll('.popup__feature');
+  var fillInPopUpFeature = function () {
+    for (var i = 0; i < massAdds.offer.features.length; i++) {
+      featureItems[i].textContent = massAdds.offer.features[i];
+    }
+    return featureItems;
+  };
+  //advertElement.featuresForFill.appendChild(fillInPopUpFeature());
   advertElement.querySelector('.popup__description').textContent = massAdds.offer.description;
   advertElement.querySelector('.popup__photos').querySelector('img').src = photosAll[0];
-  for (i = 1; i < photosAll.length; i++) {
+  for (var i = 1; i < photosAll.length; i++) {
     advertElement.querySelector('.popup__photos').appendChild('img').classList.add('popup__photo').src = photosAll[i];
-  }
+  }  
   advertElement.querySelector('.popup__avatar').src = massAdds.author;
   return advertElement;
 };
