@@ -104,7 +104,7 @@ var createAdvert = function (item) {
     var feature = document.createElement('li');
     feature.classList.add('popup__feature', 'popup__feature--' + item.offer.features[i]);
     featuresForFill.appendChild(feature);
-  }  
+  }
   advertElement.querySelector('.popup__description').textContent = item.offer.description;
   var photoContainer = advertElement.querySelector('.popup__photos');
   photoContainer.innerHTML = '';
@@ -115,10 +115,9 @@ var createAdvert = function (item) {
     photo.height = 40;
     photo.src = photosAll[i];
     photoContainer.appendChild(photo);
-  }  
+  }
   return advertElement;
-};
-  
+};  
 var block = document.querySelector('.map__filters-container');
 var putElementInContainer = function () {
   block.insertAdjacentElement('beforeBegin', createAdvert(massAdds[0]));
