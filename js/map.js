@@ -117,7 +117,8 @@ var createAdvert = function (item) {
     photoContainer.appendChild(photo);
   }
   return advertElement;
-};  
+};
+
 var block = document.querySelector('.map__filters-container');
 var putElementInContainer = function () {
   block.insertAdjacentElement('beforeBegin', createAdvert(massAdds[0]));
