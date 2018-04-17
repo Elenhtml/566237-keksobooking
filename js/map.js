@@ -98,17 +98,14 @@ var createAdvert = function (item) {
   advertElement.querySelector('.popup__type').textContent = typeChoice[item.offer.type];
   advertElement.querySelector('.popup__text--capacity').textContent = item.offer.rooms + ' комнаты для ' + item.offer.guests + ' гостей';
   advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + item.offer.checking + ', выезд до ' + item.offer.checkout;
-  
   var featuresForFill = advertElement.querySelector('.popup__features');
   featuresForFill.innerHTML = '';
   for (var i = 0; i < item.offer.features.length; i++) {
     var feature = document.createElement('li');
     feature.classList.add('popup__feature', 'popup__feature--' + item.offer.features[i]);
     featuresForFill.appendChild(feature);
-  }
-  
+  }  
   advertElement.querySelector('.popup__description').textContent = item.offer.description;
-  
   var photoContainer = advertElement.querySelector('.popup__photos');
   photoContainer.innerHTML = '';
   for (i = 0; i < photosAll.length; i++) {
@@ -118,8 +115,7 @@ var createAdvert = function (item) {
     photo.height = 40;
     photo.src = photosAll[i];
     photoContainer.appendChild(photo);
-  }
-  
+  }  
   return advertElement;
 };
   
