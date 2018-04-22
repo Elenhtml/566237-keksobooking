@@ -130,12 +130,14 @@ var mainPin = document.querySelector('.map__pin--main');
 var adForm = document.querySelector('.ad-form');
 var fieldsets = document.querySelectorAll('.ad-form fieldset');
 var adFormAddress = document.querySelector('#address');
+var MAP_PIN_MAIN_LEFT = 570;
+var MAP_PIN_MAIN_TOP = 535;
 mainPin.addEventListener('mouseup', function () {
   adForm.classList.remove('ad-form--disabled');
   for (var i = 0; i < fieldsets.length; i++) {
     fieldsets[i].classList.remove('disabled');
   }
-  adFormAddress.value = (mapPin.location.x - MAP_PIN_WIDTH / 2) + ', ' + (mapPin.location.y - MAP_PIN_HEIGHT);
+  adFormAddress.value = (MAP_PIN_MAIN_LEFT - MAP_PIN_WIDTH / 2) + ', ' + (MAP_PIN_MAIN_TOP - MAP_PIN_HEIGHT);
 });
 
 /* var mapPinItems = document.querySelectorAll('.map__pin');
