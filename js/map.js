@@ -172,7 +172,6 @@ var changeTypeSelection = function () {
   var minPrice = MIN_PRICE_FOR_NIGHT[typeOfLiving.value];
   inputPrice.setAttribute('min', minPrice);
   inputPrice.setAttribute('placeholder', minPrice);
-  inputPrice.setAttribute('value', minPrice);
 };
 typeOfLiving.addEventListener('change', changeTypeSelection);
 
@@ -208,12 +207,16 @@ roomNumber.addEventListener('change', chooseRoomAndCapacity);
 
 var titleForm = adForm.querySelector('#title');
 adForm.addEventListener('submit', function (evt) {
-  if (!titleForm.value || !inputPrice.value) {
+  if (!titleForm.value) {
     evt.preventDefault();
     titleForm.setCustomValidity('Заполните обязательное поле');
-    inputPrice.setCustomValidity('Заполните обязательное поле');
   } else {
     titleForm.setCustomValidity('');
+  }
+  if (!inputPrice.value) {
+    evt.preventDefault();
+    inputPrice.setCustomValidity('Заполните обязательное поле');
+  } else {
     inputPrice.setCustomValidity('');
   }
 });
