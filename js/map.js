@@ -178,8 +178,8 @@ typeOfLiving.addEventListener('change', changeTypeSelection);
 
 var timesIn = adForm.querySelector('#timein');
 var timesOut = adForm.querySelector('#timeout');
-var changeTimeSelection = function (timesIn, timesOut) {
-  timesOut.value = timesIn.value;
+var changeTimeSelection = function (pointIn, pointOut) {
+  pointOut.value = pointIn.value;
 };
 timesIn.addEventListener('change', function () {
   changeTimeSelection(timesIn, timesOut);
