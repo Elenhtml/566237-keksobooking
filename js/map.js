@@ -64,16 +64,37 @@ var fillMassAdds = function () {
 fillMassAdds();
 
 var mapShow = document.querySelector('.map');
-mapShow.classList.remove('map--faded');
+
+var mainPin = document.querySelector('.map__pin--main');
+var adForm = document.querySelector('.ad-form');
+var fieldsets = document.querySelectorAll('.ad-form fieldset');
+var adFormAddress = document.querySelector('#address');
+var MAP_PIN_MAIN_LEFT = 570;
+var MAP_PIN_MAIN_TOP = 375;
+var MAP_PIN_MAIN_HEIGHT = 40;
+var MAP_PIN_MAIN_CORNER = 22;
 
 var similarListElement = document.querySelector('.map__pins');
 var similarMapPinTemplate = document.querySelector('template').content.querySelector('.map__pin');
+
+var closePopup = function () {
+  var popup = mapShow.querySelector('.popup');
+  if (popup !== null) {
+    mapShow.removeChild(popup);
+  }
+};
 
 var createMapPin = function (mapPin) {
   var mapPinElement = similarMapPinTemplate.cloneNode(true);
   mapPinElement.style = 'left: ' + (mapPin.location.x - MAP_PIN_WIDTH / 2) + 'px;' + 'top: ' + (mapPin.location.y - MAP_PIN_HEIGHT) + 'px;';
   mapPinElement.querySelector('img').src = mapPin.author;
   mapPinElement.querySelector('img').alt = mapPin.title;
+
+  mapPinElement.addEventListener('click', function () {
+    closePopup();
+    createAdvert(mapPin);
+  });
+
   return mapPinElement;
 };
 
@@ -84,14 +105,27 @@ var setAllElements = function (arr) {
   }
   return fragment;
 };
-setAllElements(massAdds);
 
-similarListElement.appendChild(fragment);
+adFormAddress.value = MAP_PIN_MAIN_LEFT + ', ' + MAP_PIN_MAIN_TOP;
+
+mainPin.addEventListener('mouseup', function () {
+  mapShow.classList.remove('map--faded');
+  adForm.classList.remove('ad-form--disabled');
+  for (var i = 0; i < fieldsets.length; i++) {
+    fieldsets[i].removeAttribute('disabled');
+  }
+  adFormAddress.value = (MAP_PIN_MAIN_LEFT + MAP_PIN_WIDTH / 2) + ', ' + (MAP_PIN_MAIN_TOP + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+
+  setAllElements(massAdds);
+  similarListElement.appendChild(fragment);
+});
 
 var similarAdvertTemplate = document.querySelector('template').content.querySelector('.map__card');
+var block = document.querySelector('.map__filters-container');
 
 var createAdvert = function (item) {
   var advertElement = similarAdvertTemplate.cloneNode(true);
+  advertElement.querySelector('.popup__avatar').src = item.author;
   advertElement.querySelector('.popup__title').textContent = item.offer.title;
   advertElement.querySelector('.popup__text--address').textContent = item.offer.address;
   advertElement.querySelector('.popup__text--price').textContent = item.offer.price + '=/ночь';
@@ -116,12 +150,12 @@ var createAdvert = function (item) {
     photo.src = photosAll[i];
     photoContainer.appendChild(photo);
   }
-  return advertElement;
-};
 
-var block = document.querySelector('.map__filters-container');
-var putElementInContainer = function () {
-  block.insertAdjacentElement('beforeBegin', createAdvert(massAdds[0]));
-  return block;
+  block.insertAdjacentElement('beforeBegin', advertElement);
+
+  var closeButton = advertElement.querySelector('.popup__close');
+
+  closeButton.addEventListener('click', function () {
+    closePopup();
+  });
 };
-putElementInContainer();
