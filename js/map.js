@@ -169,7 +169,7 @@ var MIN_PRICE_FOR_NIGHT = {
 var typeOfLiving = adForm.querySelector('#type');
 var inputPrice = adForm.querySelector('#price');
 var changeTypeSelection = function () {
-  var minPrice = MIN_PRICE_FOR_NIGHT[type.value];
+  var minPrice = MIN_PRICE_FOR_NIGHT[typeOfLiving.value];
   inputPrice.setAttribute('min', minPrice);
   inputPrice.setAttribute('placeholder', minPrice);
   inputPrice.setAttribute('value', minPrice);
@@ -182,7 +182,7 @@ var changeTimeSelection = function (timesIn, timesOut) {
   timesOut.value = timesIn.value;
 };
 timesIn.addEventListener('change', function () {
-  changeTimeSelection(timesIn, timesOut);   
+  changeTimeSelection(timesIn, timesOut);
 });
 timesOut.addEventListener('change', function () {
   changeTimeSelection(timesOut, timesIn);
@@ -207,7 +207,7 @@ var chooseRoomAndCapacity = function () {
 roomNumber.addEventListener('change', chooseRoomAndCapacity);
 
 var titleForm = adForm.querySelector('#title');
-adForm.addEventListener("submit", function (evt) {
+adForm.addEventListener('submit', function (evt) {
   if (!titleForm.value || !inputPrice.value) {
     evt.preventDefault();
     titleForm.setCustomValidity('Заполните обязательное поле');
