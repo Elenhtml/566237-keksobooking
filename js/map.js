@@ -238,9 +238,9 @@ mainPin.addEventListener('mousedown', function (evt) {
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
-     mainPin.style.left = ( mainPin.offsetLeft - shift.x ) + 'px';
-     mainPin.style.top = ( mainPin.offsetTop - shift.y ) + 'px';
-     adFormAddress.value = ( mainPin.offsetLeft - shift.x + MAP_PIN_WIDTH / 2 ) + ', ' + ( mainPin.offsetTop - shift.y + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER );
+      mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
+      mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+      adFormAddress.value = (mainPin.offsetLeft - shift.x + MAP_PIN_WIDTH / 2) + ', ' + (mainPin.offsetTop - shift.y + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
     }
   };
   var onMouseUp = function (upEvt) {
