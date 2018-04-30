@@ -220,3 +220,46 @@ adForm.addEventListener('submit', function (evt) {
     inputPrice.setCustomValidity('');
   }
 });
+
+mainPin.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+  
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    if (moveEvt.clientX < 1170 && moveEvt.clientY < 704) {
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+     mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
+     mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+     adFormAddress.value = (mainPin.offsetLeft - shift.x + MAP_PIN_WIDTH / 2) + ', ' + (mainPin.offsetTop - shift.y + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+    }
+  }
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    var shift = {
+      x: startCoords.x - upEvt.clientX,
+      y: startCoords.y - upEvt.clientY
+    };
+    startCoords = {
+      x: upEvt.clientX,
+      y: upEvt.clientY
+    };
+    mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
+    mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+    adFormAddress.value = (mainPin.offsetLeft - shift.x + MAP_PIN_WIDTH / 2) + ', ' + (mainPin.offsetTop - shift.y + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+  };
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
