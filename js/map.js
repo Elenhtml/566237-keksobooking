@@ -221,6 +221,8 @@ adForm.addEventListener('submit', function (evt) {
   }
 });
 
+var MAP_WIDTH = 1170;
+var MAP_HEIGHT = 704;
 mainPin.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
   var startCoords = {
@@ -228,20 +230,30 @@ mainPin.addEventListener('mousedown', function (evt) {
     y: evt.clientY
   };
   var onMouseMove = function (moveEvt) {
-    moveEvt.preventDefault();
-    if (moveEvt.clientX < 1170 && moveEvt.clientY < 704) {
-      var shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y - moveEvt.clientY
-      };
-      startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
-      };
-      mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
-      mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
-      adFormAddress.value = (mainPin.offsetLeft - shift.x + MAP_PIN_WIDTH / 2) + ', ' + (mainPin.offsetTop - shift.y + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+    moveEvt.preventDefault();    
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+    var newX = (mainPin.offsetLeft - shift.x);
+    if (newX < 0) {
+      newX = 0;
+    } else if (newX > MAP_WIDTH) {
+      newX = MAP_WIDTH - MAP_PIN_WIDTH;
     }
+    mainPin.style.left = newX + 'px';
+    var newY = (mainPin.offsetTop - shift.y);
+    if (newY < 0) {
+      newY = 0;
+    } else if (newY > MAP_HEIGHT) {
+      newY = MAP_HEIGHT - MAP_PIN_MAIN_HEIGHT - MAP_PIN_MAIN_CORNER * 2;
+    }      
+    mainPin.style.top = newY + 'px';
+    adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
   };
   var onMouseUp = function (upEvt) {
     upEvt.preventDefault();
@@ -255,9 +267,21 @@ mainPin.addEventListener('mousedown', function (evt) {
       x: upEvt.clientX,
       y: upEvt.clientY
     };
-    mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
-    mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
-    adFormAddress.value = (mainPin.offsetLeft - shift.x + MAP_PIN_WIDTH / 2) + ', ' + (mainPin.offsetTop - shift.y + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+    var newX = (mainPin.offsetLeft - shift.x);
+    if (newX < 0) {
+      newX = 0;
+    } else if (newX > MAP_WIDTH) {
+      newX = MAP_WIDTH - MAP_PIN_WIDTH;
+    }
+    mainPin.style.left = newX + 'px';
+    var newY = (mainPin.offsetTop - shift.y);
+    if (newY < 0) {
+      newY = 0;
+    } else if (newY > MAP_HEIGHT) {
+      newY = MAP_HEIGHT - MAP_PIN_MAIN_HEIGHT - MAP_PIN_MAIN_CORNER * 2;
+    }
+    mainPin.style.top = newY + 'px';
+    adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
   };
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
