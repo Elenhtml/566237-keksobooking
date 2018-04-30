@@ -230,7 +230,7 @@ mainPin.addEventListener('mousedown', function (evt) {
     y: evt.clientY
   };
   var onMouseMove = function (moveEvt) {
-    moveEvt.preventDefault();    
+    moveEvt.preventDefault();
     var shift = {
       x: startCoords.x - moveEvt.clientX,
       y: startCoords.y - moveEvt.clientY
@@ -251,7 +251,7 @@ mainPin.addEventListener('mousedown', function (evt) {
       newY = 0;
     } else if (newY > MAP_HEIGHT) {
       newY = MAP_HEIGHT - MAP_PIN_MAIN_HEIGHT - MAP_PIN_MAIN_CORNER * 2;
-    }      
+    }
     mainPin.style.top = newY + 'px';
     adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
   };
