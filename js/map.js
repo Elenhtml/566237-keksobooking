@@ -239,7 +239,7 @@ mainPin.addEventListener('mousedown', function (evt) {
       x: moveEvt.clientX,
       y: moveEvt.clientY
     };
-    /* var makeBorderForMainPin = function () {
+    window.makeBorderForMainPin = function () {
       var newX = (mainPin.offsetLeft - shift.x);
       if (newX < 0) {
         newX = 0;
@@ -256,8 +256,8 @@ mainPin.addEventListener('mousedown', function (evt) {
       mainPin.style.top = newY + 'px';
       return adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
     };
-    makeBorderForMainPin(); */
-    var newX = (mainPin.offsetLeft - shift.x);
+    window.makeBorderForMainPin();
+    /*var newX = (mainPin.offsetLeft - shift.x);
     if (newX < 0) {
       newX = 0;
     } else if (newX > MAP_WIDTH) {
@@ -271,7 +271,7 @@ mainPin.addEventListener('mousedown', function (evt) {
       newY = MAP_HEIGHT - MAP_PIN_MAIN_HEIGHT - MAP_PIN_MAIN_CORNER * 2;
     }
     mainPin.style.top = newY + 'px';
-    adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+    adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);*/
   };
   var onMouseUp = function (upEvt) {
     upEvt.preventDefault();
@@ -285,7 +285,8 @@ mainPin.addEventListener('mousedown', function (evt) {
       x: upEvt.clientX,
       y: upEvt.clientY
     };
-    var newX = (mainPin.offsetLeft - shift.x);
+    window.makeBorderForMainPin();
+    /*var newX = (mainPin.offsetLeft - shift.x);
     if (newX < 0) {
       newX = 0;
     } else if (newX > MAP_WIDTH) {
@@ -299,7 +300,7 @@ mainPin.addEventListener('mousedown', function (evt) {
       newY = MAP_HEIGHT - MAP_PIN_MAIN_HEIGHT - MAP_PIN_MAIN_CORNER * 2;
     }
     mainPin.style.top = newY + 'px';
-    adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);
+    adFormAddress.value = (newX + MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER);*/
   };
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
