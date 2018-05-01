@@ -31,14 +31,14 @@
     MAP_PIN_WIDTH: 40,
     MAP_PIN_HEIGHT: 40,
     typeChoice: {
-    flat: 'Квартира',
-    palace: 'Дворец',
-    house: 'Дом',
-    bungalo: 'Бунгало'
-  },
-  photosAll: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'],  
-  massAdds: []
-  }
+      flat: 'Квартира',
+      palace: 'Дворец',
+      house: 'Дом',
+      bungalo: 'Бунгало'
+    },
+    photosAll: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'],
+    massAdds: []
+  };
   var fillMassAdds = function () {
     for (var i = 0; i < ADDS_COUNT; i++) {
       window.data.massAdds[i] = {

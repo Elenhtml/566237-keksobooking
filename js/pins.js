@@ -78,25 +78,25 @@
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
-      window.makeBorderForMainPin = function () {
+      /* window.makeBorderForMainPin = function () {
         var newX = (mainPin.offsetLeft - shift.x);
         if (newX < 0) {
           newX = 0;
         } else if (newX > MAP_WIDTH) {
           newX = MAP_WIDTH - window.data.MAP_PIN_WIDTH;
         }
-        mainPin.style.left = newX + 'px';  
+        mainPin.style.left = newX + 'px';
         var newY = (mainPin.offsetTop - shift.y);
         if (newY < 0) {
           newY = 0;
         } else if (newY > MAP_HEIGHT) {
-        newY = MAP_HEIGHT - MAP_PIN_MAIN_COORDINATES.HEIGHT - MAP_PIN_MAIN_COORDINATES.CORNER * 2;
+          newY = MAP_HEIGHT - MAP_PIN_MAIN_COORDINATES.HEIGHT - MAP_PIN_MAIN_COORDINATES.CORNER * 2;
         }
         mainPin.style.top = newY + 'px';
         return adFormAddress.value = (newX + window.data.MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
       };
-      window.makeBorderForMainPin();
-      /* var newX = (mainPin.offsetLeft - shift.x);
+      window.makeBorderForMainPin(); */
+      var newX = (mainPin.offsetLeft - shift.x);
       if (newX < 0) {
         newX = 0;
       } else if (newX > MAP_WIDTH) {
@@ -110,7 +110,7 @@
         newY = MAP_HEIGHT - MAP_PIN_MAIN_COORDINATES.HEIGHT - MAP_PIN_MAIN_COORDINATES.CORNER * 2;
       }
       mainPin.style.top = newY + 'px';
-      adFormAddress.value = (newX + window.data.MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER); */
+      adFormAddress.value = (newX + window.data.MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
     };
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
@@ -124,8 +124,8 @@
         x: upEvt.clientX,
         y: upEvt.clientY
       };
-      window.makeBorderForMainPin();
-      /* var newX = (mainPin.offsetLeft - shift.x);
+      /* window.makeBorderForMainPin(); */
+      var newX = (mainPin.offsetLeft - shift.x);
       if (newX < 0) {
         newX = 0;
       } else if (newX > MAP_WIDTH) {
@@ -136,10 +136,10 @@
       if (newY < 0) {
         newY = 0;
       } else if (newY > MAP_HEIGHT) {
-        newY = MAP_HEIGHT - MAP_PIN_MAIN_HEIGHT - MAP_PIN_MAIN_CORNER * 2;
+        newY = MAP_HEIGHT - MAP_PIN_MAIN_COORDINATES.HEIGHT - MAP_PIN_MAIN_COORDINATES.CORNER * 2;
       }
       mainPin.style.top = newY + 'px';
-      adFormAddress.value = (newX + window.data.MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_HEIGHT + MAP_PIN_MAIN_CORNER); */
+      adFormAddress.value = (newX + window.data.MAP_PIN_WIDTH / 2) + ', ' + (newY + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
     };
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
