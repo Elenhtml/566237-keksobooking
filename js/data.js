@@ -10,6 +10,7 @@
   var addresses = ['600, 350', '350, 600', '1000, 700', '1100, 350', '900, 550', '800, 400', '500, 550', '200, 700'];
   var times = ['12:00', '13:00', '14:00'];
   var featuresAll = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+  var photosAll = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
   var getRandomInt = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -27,21 +28,10 @@
     return massNew;
   };
 
-  window.data = {
-    MAP_PIN_WIDTH: 40,
-    MAP_PIN_HEIGHT: 40,
-    typeChoice: {
-      flat: 'Квартира',
-      palace: 'Дворец',
-      house: 'Дом',
-      bungalo: 'Бунгало'
-    },
-    photosAll: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'],
-    massAdds: []
-  };
   var fillMassAdds = function () {
+    var offers = [];
     for (var i = 0; i < ADDS_COUNT; i++) {
-      window.data.massAdds[i] = {
+      offers[i] = {
         author: avatars[i],
         offer: {
           title: titlesTypes.titles[i],
@@ -54,7 +44,7 @@
           checkout: chooseRandom(times),
           features: chooseFeatures(featuresAll),
           description: '',
-          photos: window.data.photosAll
+          photos: photosAll
         },
         location: {
           x: getRandomInt(300, 900),
@@ -62,7 +52,18 @@
         }
       };
     }
-    return window.data.massAdds;
+    return offers;
   };
-  fillMassAdds();
+
+  window.data = {
+    MAP_PIN_WIDTH: 40,
+    MAP_PIN_HEIGHT: 40,
+    typeChoice: {
+      flat: 'Квартира',
+      palace: 'Дворец',
+      house: 'Дом',
+      bungalo: 'Бунгало'
+    },
+    massAdds: fillMassAdds()
+  };
 })();

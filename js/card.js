@@ -3,8 +3,21 @@
 (function () {
   var similarAdvertTemplate = document.querySelector('template').content.querySelector('.map__card');
   var block = document.querySelector('.map__filters-container');
+  var ESC_KEYCODE = 27;
+  var onPopupEscPress = function (evt) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      closePopup();
+    }
+  };
+  var closePopup = function () {
+    var popup = window.pins.mapShow.querySelector('.popup');
+    if (popup !== null) {
+      window.pins.mapShow.removeChild(popup);
+    }
+    document.removeEventListener('keydown', onPopupEscPress);
+  };
 
-  window.createAdvert = function (item) {
+  var createAdvert = function (item) {
     var advertElement = similarAdvertTemplate.cloneNode(true);
     advertElement.querySelector('.popup__avatar').src = item.author;
     advertElement.querySelector('.popup__title').textContent = item.offer.title;
@@ -23,12 +36,12 @@
     advertElement.querySelector('.popup__description').textContent = item.offer.description;
     var photoContainer = advertElement.querySelector('.popup__photos');
     photoContainer.innerHTML = '';
-    for (i = 0; i < window.data.photosAll.length; i++) {
+    for (i = 0; i < item.offer.photos.length; i++) {
       var photo = document.createElement('img');
       photo.classList.add('popup__photo');
       photo.width = 45;
       photo.height = 40;
-      photo.src = window.data.photosAll[i];
+      photo.src = item.offer.photos[i];
       photoContainer.appendChild(photo);
     }
 
@@ -37,7 +50,14 @@
     var closeButton = advertElement.querySelector('.popup__close');
 
     closeButton.addEventListener('click', function () {
-      window.pins.closePopup();
+      closePopup();
     });
+    document.addEventListener('keydown', onPopupEscPress);
+  };
+
+  window.card = {
+    createAdvert: createAdvert,
+    closePopup: closePopup,
+    ESC_KEYCODE: ESC_KEYCODE
   };
 })();

@@ -7,8 +7,9 @@
     house: '5000',
     bungalo: '0'
   };
-  var typeOfLiving = window.pins['adForm'].querySelector('#type');
-  var inputPrice = window.pins.adForm.querySelector('#price');
+  var adForm = document.querySelector('.ad-form');
+  var typeOfLiving = adForm.querySelector('#type');
+  var inputPrice = adForm.querySelector('#price');
   var changeTypeSelection = function () {
     var minPrice = MIN_PRICE_FOR_NIGHT[typeOfLiving.value];
     inputPrice.setAttribute('min', minPrice);
@@ -16,8 +17,8 @@
   };
   typeOfLiving.addEventListener('change', changeTypeSelection);
 
-  var timesIn = window.pins.adForm.querySelector('#timein');
-  var timesOut = window.pins.adForm.querySelector('#timeout');
+  var timesIn = adForm.querySelector('#timein');
+  var timesOut = adForm.querySelector('#timeout');
   var changeTimeSelection = function (pointIn, pointOut) {
     pointOut.value = pointIn.value;
   };
@@ -34,8 +35,8 @@
     3: ['3', '2', '1'],
     100: ['0']
   };
-  var roomNumber = window.pins.adForm.querySelector('#room_number');
-  var guestsCapacity = window.pins.adForm.querySelector('#capacity');
+  var roomNumber = adForm.querySelector('#room_number');
+  var guestsCapacity = adForm.querySelector('#capacity');
   var chooseRoomAndCapacity = function () {
     if (guestsCapacity.options.length > 0) {
       [].forEach.call(guestsCapacity.options, function (option) {
@@ -46,8 +47,8 @@
   };
   roomNumber.addEventListener('change', chooseRoomAndCapacity);
 
-  var titleForm = window.pins.adForm.querySelector('#title');
-  window.pins.adForm.addEventListener('submit', function (evt) {
+  var titleForm = adForm.querySelector('#title');
+  adForm.addEventListener('submit', function (evt) {
     if (!titleForm.value) {
       evt.preventDefault();
       titleForm.setCustomValidity('Заполните обязательное поле');
@@ -61,4 +62,8 @@
       inputPrice.setCustomValidity('');
     }
   });
+  
+  window.form = {
+    adForm: adForm
+  };
 })();
