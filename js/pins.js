@@ -63,7 +63,6 @@
       x: evt.clientX,
       y: evt.clientY
     };
-
     var checkPinCoords = function (x, y) {
       if (x < 0) {
         x = 0;
