@@ -62,7 +62,6 @@
       inputPrice.setCustomValidity('');
     }
   });
-  
   window.form = {
     adForm: adForm
   };
