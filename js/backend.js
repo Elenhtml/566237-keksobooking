@@ -43,7 +43,7 @@
   var sendInfoToServer = function (data, onLoad, onError) {
     var URL = 'https://js.dump.academy/keksobooking';
     // commonFunction();
-    var xhr = new XMLHttpRequest();    
+    var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       onLoad(xhr.response);
@@ -59,8 +59,7 @@
     xhr.send(data);
   };
   window.backend = {
-    xhr: xhr,
-    commonFunction: commonFunction,
+    // commonFunction: commonFunction,
     loadData: loadData,
     sendInfoToServer: sendInfoToServer
   };
