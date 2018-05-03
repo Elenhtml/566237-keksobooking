@@ -12,11 +12,10 @@
     var URL = 'https://js.dump.academy/keksobooking/data';
     // commonFunction();
     var xhr = new XMLHttpRequest();
-    var commonFunction = function () {
-      xhr.responseType = 'json';
-      xhr.addEventListener('load', function () {
-        onLoad(xhr.response);
-      });
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      onLoad(xhr.response);
+    });
     xhr.addEventListener('error', function () {
       onError('Произошла ошибка соединения');
       var errorHandler = function (errorMessage) {
@@ -44,12 +43,11 @@
   var sendInfoToServer = function (data, onLoad, onError) {
     var URL = 'https://js.dump.academy/keksobooking';
     // commonFunction();
-    var xhr = new XMLHttpRequest();
-    var commonFunction = function () {
-      xhr.responseType = 'json';
-      xhr.addEventListener('load', function () {
-        onLoad(xhr.response);
-      });
+    var xhr = new XMLHttpRequest();    
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      onLoad(xhr.response);
+    });
     xhr.addEventListener('error', function () {
       if (onError('Произошла ошибка соединения')) {
         onError('Произошла ошибка соединения');
