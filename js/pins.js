@@ -115,6 +115,9 @@
   });
 
   window.pins = {
-    mapShow: mapShow
+    mapShow: mapShow,
+    mainPin: mainPin,
+    fieldsets: fieldsets,
+    adFormAddress: adFormAddress
   };
 })();

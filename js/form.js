@@ -60,6 +60,17 @@
       inputPrice.setCustomValidity('Заполните обязательное поле');
     } else {
       inputPrice.setCustomValidity('');
+      window.sendInfoToServer(new FormData(form), function (response) {
+        window.pins.mapShow.classList.add('map--faded');
+        window.form.adForm.classList.add('ad-form--disabled');
+        for (var i = 0; i < window.pins.fieldsets.length; i++) {
+          window.pins.fieldsets[i].setAttribute('disabled', 'disabled');
+        }
+      });
+     /*  window.pins.mainPin.style.top = y + 'px';
+      window.pins.mainPin.style.left = x + 'px';
+      window.pins.adFormAddress.value = (x + window.data.MAP_PIN_WIDTH / 2) + ', ' + (y + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
+      evt.preventDefault(); */
     }
   });
   window.form = {
