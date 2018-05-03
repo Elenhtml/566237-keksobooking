@@ -60,17 +60,24 @@
       inputPrice.setCustomValidity('Заполните обязательное поле');
     } else {
       inputPrice.setCustomValidity('');
-      /* window.sendInfoToServer(new FormData(form), function (response) {
-        window.pins.mapShow.classList.add('map--faded');
-        window.form.adForm.classList.add('ad-form--disabled');
-        for (var i = 0; i < window.pins.fieldsets.length; i++) {
-          window.pins.fieldsets[i].setAttribute('disabled', 'disabled');
-        }
-      window.pins.mainPin.style.top = y + 'px';
-      window.pins.mainPin.style.left = x + 'px';
-      window.pins.adFormAddress.value = (x + window.data.MAP_PIN_WIDTH / 2) + ', ' + (y + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
-      evt.preventDefault();
-      }); */
+      /* window.backend.sendInfoToServer(new FormData(adForm), function (response) {
+       window.pins.mapShow.classList.add('map--faded');
+       window.form.adForm.classList.add('ad-form--disabled');
+       for (var i = 0; i < window.pins.fieldsets.length; i++) {
+         window.pins.fieldsets[i].setAttribute('disabled', 'disabled');
+         window.pins.fieldsets[i].querySelector('input').value = window.pins.fieldsets[i].querySelector('input').placeholder;
+       }
+       var popup = window.pins.mapShow.querySelector('.popup');
+       if (popup !== null) {
+         window.pins.mapShow.removeChild(popup);
+       }
+       window.pins.mainPin.style.top = window.pins.MAP_PIN_MAIN_COORDINATES.TOP + 'px';
+       window.pins.mainPin.style.left = window.pins.MAP_PIN_MAIN_COORDINATES.LEFT + 'px';
+       window.pins.adFormAddress.value = (window.pins.MAP_PIN_MAIN_COORDINATES.LEFT + window.data.MAP_PIN_WIDTH / 2) + ', ' + (window.pins.MAP_PIN_MAIN_COORDINATES.TOP + window.pins.MAP_PIN_MAIN_COORDINATES.HEIGHT + window.pins.MAP_PIN_MAIN_COORDINATES.CORNER);
+       var successField = document.querySelector('.success');
+       successField.classList.remove('hidden');
+       evt.preventDefault();
+      }, onError); */
     }
   });
   window.form = {
