@@ -6,8 +6,8 @@
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       onLoad(xhr.response);
-    }); */
-  };
+    });
+  }; */
   var loadData = function (onLoad, onError) {
     var URL = 'https://js.dump.academy/keksobooking/data';
     // commonFunction();
