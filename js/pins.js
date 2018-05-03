@@ -39,7 +39,7 @@
 
   adFormAddress.value = MAP_PIN_MAIN_COORDINATES.LEFT + ', ' + MAP_PIN_MAIN_COORDINATES.TOP;
 
-  var adressesNew = [];
+  // var adressesNew = [];
   mainPin.addEventListener('mouseup', function () {
     mapShow.classList.remove('map--faded');
     window.form.adForm.classList.remove('ad-form--disabled');
