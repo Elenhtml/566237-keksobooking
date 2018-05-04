@@ -2,7 +2,6 @@
 
 (function () {
   var ADDS_COUNT = 8;
-  
   var fillMassAdds = function () {
     var offers = [];
     for (var i = 0; i < ADDS_COUNT; i++) {

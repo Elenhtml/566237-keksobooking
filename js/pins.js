@@ -13,7 +13,6 @@
   };
   var DEFAULT_OFFERS = 5;
   var adressesNew = [];
-  
   var similarListElement = document.querySelector('.map__pins');
   var similarMapPinTemplate = document.querySelector('template').content.querySelector('.map__pin');
 
@@ -32,7 +31,6 @@
   };
 
   var fragment = document.createDocumentFragment();
-  
   var setAllElements = function (arr) {
     for (var i = 0; i < arr.length; i++) {
       fragment.appendChild(createMapPin(arr[i]));
@@ -55,15 +53,12 @@
       showMessage.parentNode.removeChild(showMessage);
     }, 3000);
   };
-    
   var setDefaultAddress = function () {
     adFormAddress.value = MAP_PIN_MAIN_COORDINATES.LEFT + ', ' + MAP_PIN_MAIN_COORDINATES.TOP;
   };
-  
   var setAddress = function () {
     adFormAddress.value = (MAP_PIN_MAIN_COORDINATES.LEFT + window.data.MAP_PIN_WIDTH / 2) + ', ' + (MAP_PIN_MAIN_COORDINATES.TOP + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
   };
-  
   mainPin.addEventListener('mouseup', function () {
     mapShow.classList.remove('map--faded');
     window.form.adForm.classList.remove('ad-form--disabled');

@@ -61,7 +61,6 @@
       showMessage.parentNode.removeChild(showMessage);
     }, 3000);
   };
-  
   var removePins = function () {
     var pins = pinsContainer.querySelectorAll('.map__pin:not(.map__pin--main)');
     if (pins !== null) {
@@ -84,7 +83,6 @@
     window.pins.mainPin.style.left = window.pins.MAP_PIN_MAIN_COORDINATES.LEFT + 'px';
     window.pins.setDefaultAddress();
   };
-  
   var onSuccess = function () {
     makeReset();
 
@@ -94,7 +92,6 @@
       successField.classList.add('hidden');
     }, 3000);
   };
-  
   var titleForm = adForm.querySelector('#title');
   adForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
@@ -110,12 +107,10 @@
       window.backend.uploadData(new FormData(adForm), onSuccess, onError);
     }
   });
-  
   var buttonReset = document.querySelector('.ad-form__reset');
   buttonReset.addEventListener('click', function () {
     makeReset();
   });
- 
   window.form = {
     adForm: adForm
   };
