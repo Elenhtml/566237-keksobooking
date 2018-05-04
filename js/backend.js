@@ -19,16 +19,17 @@
     xhr.addEventListener('error', function () {
       onError('Произошла ошибка соединения');
       var errorHandler = function (errorMessage) {
-        setTimeout(function () {
-          var showMessage = document.createElement('div');
-          showMessage.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-          showMessage.style.position = 'absolute';
-          showMessage.style.left = 0;
-          showMessage.style.right = 0;
-          showMessage.style.fontSize = '30px';
-          showMessage.textContent = errorMessage;
-          document.body.insertAdjacentElement('afterbegin', showMessage);
-        }, 3000);
+        var showMessage = document.createElement('div');
+        showMessage.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+        showMessage.style.position = 'absolute';
+        showMessage.style.left = 0;
+        showMessage.style.right = 0;
+        showMessage.style.fontSize = '30px';
+        showMessage.textContent = errorMessage;
+        document.body.insertAdjacentElement('afterbegin', showMessage);
+        setTimeout(function() {
+          div.parentNode.removeChild(div);
+        }, 3000);        
       };
       loadData(errorHandler);
     });
