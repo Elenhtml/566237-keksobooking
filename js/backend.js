@@ -27,9 +27,9 @@
         showMessage.style.fontSize = '30px';
         showMessage.textContent = errorMessage;
         document.body.insertAdjacentElement('afterbegin', showMessage);
-        setTimeout(function() {
-          div.parentNode.removeChild(div);
-        }, 3000);        
+        setTimeout(function () {
+          showMessage.parentNode.removeChild(showMessage);
+        }, 3000);
       };
       loadData(errorHandler);
     });
