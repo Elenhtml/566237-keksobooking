@@ -5,7 +5,6 @@
     low: 10000,
     high: 50000
   };
-  
   var formFilters = document.querySelector('.map__filters');
   var upDatePins = function (offers) {
     var chosenOffers = offers.slice();
@@ -78,11 +77,11 @@
       }, DEBOUNCE_INTERVAL);
     };
   };
-  formFilters.addEventListener('change', function () {
+  /* formFilters.addEventListener('change', function () {
     removePins();
     window.card.closePopup();
     debounce(upDatePins(offers), 500);
-  });
+  }); */
   window.filters = {
     upDatePins: function (offers) {
       upDatePins(offers);
