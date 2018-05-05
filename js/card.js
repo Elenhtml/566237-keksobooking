@@ -19,13 +19,13 @@
 
   var createAdvert = function (item) {
     var advertElement = similarAdvertTemplate.cloneNode(true);
-    advertElement.querySelector('.popup__avatar').src = item.author;
+    advertElement.querySelector('.popup__avatar').src = item.author.avatar;
     advertElement.querySelector('.popup__title').textContent = item.offer.title;
     advertElement.querySelector('.popup__text--address').textContent = item.offer.address;
     advertElement.querySelector('.popup__text--price').textContent = item.offer.price + '=/ночь';
     advertElement.querySelector('.popup__type').textContent = window.data.typeChoice[item.offer.type];
     advertElement.querySelector('.popup__text--capacity').textContent = item.offer.rooms + ' комнаты для ' + item.offer.guests + ' гостей';
-    advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + item.offer.checking + ', выезд до ' + item.offer.checkout;
+    advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + item.offer.checkin + ', выезд до ' + item.offer.checkout;
     var featuresForFill = advertElement.querySelector('.popup__features');
     featuresForFill.innerHTML = '';
     for (var i = 0; i < item.offer.features.length; i++) {

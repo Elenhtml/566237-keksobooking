@@ -7,6 +7,7 @@
     house: '5000',
     bungalo: '0'
   };
+  var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
   var adForm = document.querySelector('.ad-form');
   var typeOfLiving = adForm.querySelector('#type');
   var inputPrice = adForm.querySelector('#price');
@@ -47,20 +48,68 @@
   };
   roomNumber.addEventListener('change', chooseRoomAndCapacity);
 
+  var onError = function (message) {
+    var showMessage = document.createElement('div');
+    showMessage.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    showMessage.style.position = 'absolute';
+    showMessage.style.left = 0;
+    showMessage.style.right = 0;
+    showMessage.style.fontSize = '30px';
+    showMessage.textContent = message;
+    document.body.insertAdjacentElement('afterbegin', showMessage);
+    setTimeout(function () {
+      showMessage.parentNode.removeChild(showMessage);
+    }, 3000);
+  };
+  var removePins = function () {
+    var pins = pinsContainer.querySelectorAll('.map__pin:not(.map__pin--main)');
+    if (pins !== null) {
+      [].forEach.call(pins, function (pin) {
+        pinsContainer.removeChild(pin);
+      });
+    }
+  };
+
+  var makeReset = function () {
+    window.pins.mapShow.classList.add('map--faded');
+    window.form.adForm.classList.add('ad-form--disabled');
+    for (var i = 0; i < window.pins.fieldsets.length; i++) {
+      window.pins.fieldsets[i].disabled = true;
+    }
+    adForm.reset();
+    window.card.closePopup();
+    removePins();
+    window.pins.mainPin.style.top = window.pins.MAP_PIN_MAIN_COORDINATES.TOP + 'px';
+    window.pins.mainPin.style.left = window.pins.MAP_PIN_MAIN_COORDINATES.LEFT + 'px';
+    window.pins.setDefaultAddress();
+  };
+  var onSuccess = function () {
+    makeReset();
+
+    var successField = document.querySelector('.success');
+    successField.classList.remove('hidden');
+    setTimeout(function () {
+      successField.classList.add('hidden');
+    }, 3000);
+  };
   var titleForm = adForm.querySelector('#title');
   adForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
     if (!titleForm.value) {
-      evt.preventDefault();
       titleForm.setCustomValidity('Заполните обязательное поле');
     } else {
       titleForm.setCustomValidity('');
     }
     if (!inputPrice.value) {
-      evt.preventDefault();
       inputPrice.setCustomValidity('Заполните обязательное поле');
     } else {
       inputPrice.setCustomValidity('');
+      window.backend.uploadData(new FormData(adForm), onSuccess, onError);
     }
+  });
+  var buttonReset = document.querySelector('.ad-form__reset');
+  buttonReset.addEventListener('click', function () {
+    makeReset();
   });
   window.form = {
     adForm: adForm
