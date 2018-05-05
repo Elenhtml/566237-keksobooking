@@ -51,6 +51,9 @@
         chosenOffers = filterByFeatures(item);
       });
     }
+    if (chosenOffers.length) {
+      window.pins.setAllElements(chosenOffers);
+    }
   };
   var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
   var removePins = function () {
@@ -73,7 +76,7 @@
   formFilters.addEventListener('change', function () {
     removePins();
     window.card.closePopup();
-    debounce(upDatePins(window.pins.addressesNew), 500);
+    debounce(upDatePins(window.pins.setAllElements(window.pins.addressesNew)), 500);
   });
   window.filters = {
     upDatePins: function (offers) {

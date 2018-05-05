@@ -142,6 +142,7 @@
     fieldsets: fieldsets,
     setDefaultAddress: setDefaultAddress,
     adFormAddress: adFormAddress,
-    addressesNew: addressesNew
+    addressesNew: addressesNew,
+    setAllElements: setAllElements
   };
 })();
