@@ -12,7 +12,7 @@
     CORNER: 22
   };
   var DEFAULT_OFFERS = 5;
-  var adressesNew = [];
+  var addressesNew = [];
   var similarListElement = document.querySelector('.map__pins');
   var similarMapPinTemplate = document.querySelector('template').content.querySelector('.map__pin');
 
@@ -69,11 +69,11 @@
     setAddress();
 
     window.backend.loadData(function (res) {
-      adressesNew = res.slice(DEFAULT_OFFERS);
-      similarListElement.appendChild(setAllElements(adressesNew));
-    }, onError);
+      addressesNew = res.slice(DEFAULT_OFFERS);
+      similarListElement.appendChild(setAllElements(addressesNew));
+    }, onError);    
   });
-
+   
   var MapCoords = {
     WIDTH: 1100,
     HEIGHT: 600
@@ -142,6 +142,7 @@
     mainPin: mainPin,
     fieldsets: fieldsets,
     setDefaultAddress: setDefaultAddress,
-    adFormAddress: adFormAddress
+    adFormAddress: adFormAddress,
+    addressesNew: addressesNew
   };
 })();
