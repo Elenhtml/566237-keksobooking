@@ -5,7 +5,6 @@
     low: 10000,
     high: 50000
   };
-  
   var formFilters = document.querySelector('.map__filters');
   var upDatePins = function (offers) {
     var chosenOffers = offers.slice();
@@ -51,7 +50,7 @@
       featuresFilters.forEach(function (item) {
         chosenOffers = filterByFeatures(item);
       });
-    }    
+    }
   };
   var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
   var removePins = function () {
@@ -62,7 +61,6 @@
       });
     }
   };
-  var DEBOUNCE_INTERVAL = 500;
   var debounce = function (fun, DEBOUNCE_INTERVAL) {
     var lastTimeout = null;
     return function () {
@@ -72,11 +70,10 @@
       lastTimeout = setTimeout(fun, DEBOUNCE_INTERVAL);
     };
   };
-  
   formFilters.addEventListener('change', function () {
     removePins();
     window.card.closePopup();
-    debounce(upDatePins(window.pins.addressesNew), DEBOUNCE_INTERVAL);
+    debounce(upDatePins(window.pins.addressesNew), 500);
   });
   window.filters = {
     upDatePins: function (offers) {

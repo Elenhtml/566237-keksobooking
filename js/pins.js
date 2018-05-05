@@ -71,9 +71,8 @@
     window.backend.loadData(function (res) {
       addressesNew = res.slice(DEFAULT_OFFERS);
       similarListElement.appendChild(setAllElements(addressesNew));
-    }, onError);    
+    }, onError);
   });
-   
   var MapCoords = {
     WIDTH: 1100,
     HEIGHT: 600
