@@ -7,7 +7,6 @@
     house: '5000',
     bungalo: '0'
   };
-  // var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
   var adForm = document.querySelector('.ad-form');
   var typeOfLiving = adForm.querySelector('#type');
   var inputPrice = adForm.querySelector('#price');
@@ -61,15 +60,6 @@
       showMessage.parentNode.removeChild(showMessage);
     }, 3000);
   };
-  /* var removePins = function () {
-    var pins = pinsContainer.querySelectorAll('.map__pin:not(.map__pin--main)');
-    if (pins !== null) {
-      [].forEach.call(pins, function (pin) {
-        pinsContainer.removeChild(pin);
-      });
-    }
-  }; */ 
-  
   var makeReset = function () {
     window.pins.mapShow.classList.add('map--faded');
     window.form.adForm.classList.add('ad-form--disabled');

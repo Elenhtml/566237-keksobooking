@@ -5,7 +5,7 @@
     low: 10000,
     high: 50000
   };
-  var offers = [];
+  
   var formFilters = document.querySelector('.map__filters');
   var upDatePins = function (offers) {
     var chosenOffers = offers.slice();
@@ -36,7 +36,6 @@
         return offerData.offer.features.indexOf(item.value) >= 0;
       });
     };
-  
     if (selectFilters.length !== null) {
       selectFilters.forEach(function (item) {
         if (item.value !== 'any') {
@@ -48,18 +47,15 @@
         }
       });
     }
-  
     if (featuresFilters !== null) {
       featuresFilters.forEach(function (item) {
         chosenOffers = filterByFeatures(item);
       });
     }
-  
     /* if (filteredOffers.length) {
       window.pins.render(chosenOffers);
     }*/
   };
-  
   var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
   var removePins = function () {
     var pins = pinsContainer.querySelectorAll('.map__pin:not(.map__pin--main)');
@@ -69,7 +65,6 @@
       });
     }
   };
-  
   var DEBOUNCE_INTERVAL = 500;
   var debounce = function (fun) {
     var lastTimeout = null;
@@ -83,13 +78,11 @@
       }, DEBOUNCE_INTERVAL);
     };
   };
-  
   formFilters.addEventListener('change', function () {
     removePins();
     window.card.closePopup();
     debounce(upDatePins(offers), 500);
   });
-  
   window.filters = {
     upDatePins: function (offers) {
       upDatePins(offers);
