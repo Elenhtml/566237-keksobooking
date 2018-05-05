@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var ADDS_COUNT = 8;
+  var ADDS_COUNT = 5;
   var fillMassAdds = function () {
     var offers = [];
     for (var i = 0; i < ADDS_COUNT; i++) {
