@@ -4,7 +4,7 @@
   var ADDS_COUNT = 5;
   var fillMassAdds = function () {
     var offers = [];
-    for (var i = 0; i < ADDS_COUNT; i++) {
+    /* for (var i = 0; i < ADDS_COUNT; i++) {
       offers[i] = {
         author: '',
         offer: {
@@ -25,7 +25,29 @@
           y: ''
         }
       };
-    }
+    } */
+    offers.forEach(function (el, i) {
+      offers[i] = {
+        author: '',
+        offer: {
+          title: '',
+          address: '',
+          price: '',
+          type: '',
+          rooms: '',
+          guests: '',
+          checkin: '',
+          checkout: '',
+          features: '',
+          description: '',
+          photos: ''
+        },
+        location: {
+          x: '',
+          y: ''
+        }
+      };
+    });
     return offers;
   };
 

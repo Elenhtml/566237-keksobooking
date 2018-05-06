@@ -28,22 +28,35 @@
     advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + item.offer.checkin + ', выезд до ' + item.offer.checkout;
     var featuresForFill = advertElement.querySelector('.popup__features');
     featuresForFill.innerHTML = '';
-    for (var i = 0; i < item.offer.features.length; i++) {
+    /* for (var i = 0; i < item.offer.features.length; i++) {
       var feature = document.createElement('li');
       feature.classList.add('popup__feature', 'popup__feature--' + item.offer.features[i]);
       featuresForFill.appendChild(feature);
-    }
+    } */
+    item.offer.features.forEach(function (ite, i) {
+      var feature = document.createElement('li');
+      feature.classList.add('popup__feature', 'popup__feature--' + item.offer.features[i]);
+      featuresForFill.appendChild(feature);
+    });
     advertElement.querySelector('.popup__description').textContent = item.offer.description;
     var photoContainer = advertElement.querySelector('.popup__photos');
     photoContainer.innerHTML = '';
-    for (i = 0; i < item.offer.photos.length; i++) {
+    /* for (i = 0; i < item.offer.photos.length; i++) {
       var photo = document.createElement('img');
       photo.classList.add('popup__photo');
       photo.width = 45;
       photo.height = 40;
       photo.src = item.offer.photos[i];
       photoContainer.appendChild(photo);
-    }
+    } */
+    item.offer.photos.forEach(function (te, i) {
+      var photo = document.createElement('img');
+      photo.classList.add('popup__photo');
+      photo.width = 45;
+      photo.height = 40;
+      photo.src = item.offer.photos[i];
+      photoContainer.appendChild(photo);
+    });
 
     block.insertAdjacentElement('beforeBegin', advertElement);
 

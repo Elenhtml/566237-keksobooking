@@ -63,9 +63,12 @@
   var makeReset = function () {
     window.pins.mapShow.classList.add('map--faded');
     window.form.adForm.classList.add('ad-form--disabled');
-    for (var i = 0; i < window.pins.fieldsets.length; i++) {
+    /* for (var i = 0; i < window.pins.fieldsets.length; i++) {
       window.pins.fieldsets[i].disabled = true;
-    }
+    } */
+    window.pins.fieldsets.forEach(function (tem, i) {
+      window.pins.fieldsets[i].disabled = true;
+    });
     adForm.reset();
     window.card.closePopup();
     window.filters.removePins();

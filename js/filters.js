@@ -53,6 +53,7 @@
     }
     if (chosenOffers.length) {
       window.pins.setAllElements(chosenOffers);
+      window.pins.similarListElement.appendChild(window.pins.setAllElements(chosenOffers));
     }
   };
   var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
@@ -73,10 +74,32 @@
       lastTimeout = setTimeout(fun, DEBOUNCE_INTERVAL);
     };
   };
+  var onError = function (message) {
+    var showMessage = document.createElement('div');
+    showMessage.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    showMessage.style.position = 'absolute';
+    showMessage.style.left = 0;
+    showMessage.style.right = 0;
+    showMessage.style.fontSize = '30px';
+    showMessage.textContent = message;
+    document.body.insertAdjacentElement('afterbegin', showMessage);
+    setTimeout(function () {
+      showMessage.parentNode.removeChild(showMessage);
+    }, 3000);
+  };
   formFilters.addEventListener('change', function () {
     removePins();
     window.card.closePopup();
-    debounce(upDatePins(window.pins.setAllElements(window.pins.addressesNew)), 500);
+    // debounce(upDatePins(window.pins.setAllElements(window.pins.addressesNew)), 500);
+    // console.log(upDatePins(window.pins.setAllElements(window.pins.addressesNew)));
+    /* window.backend.loadData(function (res) {
+      window.pins.addressesNew = res.slice(5);
+      window.pins.similarListElement.appendChild(window.pins.setAllElements(window.pins.addressesNew));
+    }, onError); */
+    debounce(upDatePins(window.pins.addressesNew), 500);
+    console.log(upDatePins(window.pins.addressesNew));
+    // debounce(upDatePins(window.pins.similarListElement.appendChild(window.pins.setAllElements(window.pins.addressesNew)), 500));
+    // console.log(upDatePins(window.pins.similarListElement.appendChild(window.pins.setAllElements(window.pins.addressesNew))));
   });
   window.filters = {
     upDatePins: function (offers) {

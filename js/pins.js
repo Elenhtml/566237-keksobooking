@@ -32,9 +32,12 @@
 
   var fragment = document.createDocumentFragment();
   var setAllElements = function (arr) {
-    for (var i = 0; i < arr.length; i++) {
+    /* for (var i = 0; i < arr.length; i++) {
       fragment.appendChild(createMapPin(arr[i]));
-    }
+    } */
+    arr.forEach(function (it, i) {
+      fragment.appendChild(createMapPin(arr[i]));
+    });
     return fragment;
   };
 
@@ -62,9 +65,12 @@
   mainPin.addEventListener('mouseup', function () {
     mapShow.classList.remove('map--faded');
     window.form.adForm.classList.remove('ad-form--disabled');
-    for (var i = 0; i < fieldsets.length; i++) {
+    /* for (var i = 0; i < fieldsets.length; i++) {
       fieldsets[i].removeAttribute('disabled');
-    }
+    } */
+    fieldsets.forEach(function (ele, i) {
+      fieldsets[i].removeAttribute('disabled');
+    });
 
     setAddress();
 
@@ -143,6 +149,7 @@
     setDefaultAddress: setDefaultAddress,
     adFormAddress: adFormAddress,
     addressesNew: addressesNew,
+    similarListElement: similarListElement,
     setAllElements: setAllElements
   };
 })();
