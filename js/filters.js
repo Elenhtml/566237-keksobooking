@@ -74,7 +74,7 @@
       lastTimeout = setTimeout(fun, DEBOUNCE_INTERVAL);
     };
   };
-  var onError = function (message) {
+  /* var onError = function (message) {
     var showMessage = document.createElement('div');
     showMessage.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
     showMessage.style.position = 'absolute';
@@ -86,7 +86,7 @@
     setTimeout(function () {
       showMessage.parentNode.removeChild(showMessage);
     }, 3000);
-  };
+  }; */
   formFilters.addEventListener('change', function () {
     removePins();
     window.card.closePopup();
@@ -97,7 +97,6 @@
       window.pins.similarListElement.appendChild(window.pins.setAllElements(window.pins.addressesNew));
     }, onError); */
     debounce(upDatePins(window.pins.addressesNew), 500);
-    console.log(upDatePins(window.pins.addressesNew));
     // debounce(upDatePins(window.pins.similarListElement.appendChild(window.pins.setAllElements(window.pins.addressesNew)), 500));
     // console.log(upDatePins(window.pins.similarListElement.appendChild(window.pins.setAllElements(window.pins.addressesNew))));
   });
