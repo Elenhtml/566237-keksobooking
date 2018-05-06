@@ -9,7 +9,6 @@
   };
   var DEBOUNCE_INTERVAL = 500;
   var DEFAULT_OFFERS = 5;
-  
   var mapShow = document.querySelector('.map');
   var mainPin = mapShow.querySelector('.map__pin--main');
   var fieldsets = document.querySelectorAll('.ad-form fieldset');
