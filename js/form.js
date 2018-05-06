@@ -7,28 +7,6 @@
     house: '5000',
     bungalo: '0'
   };
-  var pinsContainer = window.pins.mapShow.querySelector('.map__pins');
-  var adForm = document.querySelector('.ad-form');
-  var typeOfLiving = adForm.querySelector('#type');
-  var inputPrice = adForm.querySelector('#price');
-  var changeTypeSelection = function () {
-    var minPrice = MIN_PRICE_FOR_NIGHT[typeOfLiving.value];
-    inputPrice.setAttribute('min', minPrice);
-    inputPrice.setAttribute('placeholder', minPrice);
-  };
-  typeOfLiving.addEventListener('change', changeTypeSelection);
-
-  var timesIn = adForm.querySelector('#timein');
-  var timesOut = adForm.querySelector('#timeout');
-  var changeTimeSelection = function (pointIn, pointOut) {
-    pointOut.value = pointIn.value;
-  };
-  timesIn.addEventListener('change', function () {
-    changeTimeSelection(timesIn, timesOut);
-  });
-  timesOut.addEventListener('change', function () {
-    changeTimeSelection(timesOut, timesIn);
-  });
 
   var ROOM_CAPACITY = {
     1: ['1'],
@@ -36,8 +14,37 @@
     3: ['3', '2', '1'],
     100: ['0']
   };
+
+  var adForm = document.querySelector('.ad-form');
+  var typeOfLiving = adForm.querySelector('#type');
+  var inputPrice = adForm.querySelector('#price');
+
+  var changeTypeSelection = function () {
+    var minPrice = MIN_PRICE_FOR_NIGHT[typeOfLiving.value];
+    inputPrice.min = minPrice;
+    inputPrice.placeholder = minPrice;
+  };
+
+  typeOfLiving.addEventListener('change', changeTypeSelection);
+
+  var timesIn = adForm.querySelector('#timein');
+  var timesOut = adForm.querySelector('#timeout');
+
+  var changeTimeSelection = function (pointIn, pointOut) {
+    pointOut.value = pointIn.value;
+  };
+
+  timesIn.addEventListener('change', function () {
+    changeTimeSelection(timesIn, timesOut);
+  });
+
+  timesOut.addEventListener('change', function () {
+    changeTimeSelection(timesOut, timesIn);
+  });
+
   var roomNumber = adForm.querySelector('#room_number');
   var guestsCapacity = adForm.querySelector('#capacity');
+
   var chooseRoomAndCapacity = function () {
     if (guestsCapacity.options.length > 0) {
       [].forEach.call(guestsCapacity.options, function (option) {
@@ -46,6 +53,7 @@
       });
     }
   };
+
   roomNumber.addEventListener('change', chooseRoomAndCapacity);
 
   var onError = function (message) {
@@ -61,28 +69,25 @@
       showMessage.parentNode.removeChild(showMessage);
     }, 3000);
   };
-  var removePins = function () {
-    var pins = pinsContainer.querySelectorAll('.map__pin:not(.map__pin--main)');
-    if (pins !== null) {
-      [].forEach.call(pins, function (pin) {
-        pinsContainer.removeChild(pin);
-      });
-    }
-  };
-
   var makeReset = function () {
     window.pins.mapShow.classList.add('map--faded');
     window.form.adForm.classList.add('ad-form--disabled');
-    for (var i = 0; i < window.pins.fieldsets.length; i++) {
-      window.pins.fieldsets[i].disabled = true;
-    }
+
+    window.pins.fieldsets.forEach(function (fieldset) {
+      fieldset.disabled = true;
+    });
+
     adForm.reset();
+
     window.card.closePopup();
-    removePins();
+    window.pins.removePins();
+
     window.pins.mainPin.style.top = window.pins.MAP_PIN_MAIN_COORDINATES.TOP + 'px';
     window.pins.mainPin.style.left = window.pins.MAP_PIN_MAIN_COORDINATES.LEFT + 'px';
+
     window.pins.setDefaultAddress();
   };
+
   var onSuccess = function () {
     makeReset();
 
@@ -92,7 +97,9 @@
       successField.classList.add('hidden');
     }, 3000);
   };
+
   var titleForm = adForm.querySelector('#title');
+
   adForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
     if (!titleForm.value) {
@@ -104,13 +111,18 @@
       inputPrice.setCustomValidity('Заполните обязательное поле');
     } else {
       inputPrice.setCustomValidity('');
-      window.backend.uploadData(new FormData(adForm), onSuccess, onError);
+
+      window.backend.uploadData(onSuccess, onError, new FormData(adForm));
     }
   });
+
   var buttonReset = document.querySelector('.ad-form__reset');
-  buttonReset.addEventListener('click', function () {
+
+  buttonReset.addEventListener('click', function (evt) {
+    evt.preventDefault();
     makeReset();
   });
+
   window.form = {
     adForm: adForm
   };
