@@ -55,15 +55,12 @@
       showMessage.parentNode.removeChild(showMessage);
     }, 3000);
   };
-  
   var setDefaultAddress = function () {
     adFormAddress.value = MAP_PIN_MAIN_COORDINATES.LEFT + ', ' + MAP_PIN_MAIN_COORDINATES.TOP;
   };
-  
   var setAddress = function () {
     adFormAddress.value = (MAP_PIN_MAIN_COORDINATES.LEFT + window.data.MAP_PIN_WIDTH / 2) + ', ' + (MAP_PIN_MAIN_COORDINATES.TOP + MAP_PIN_MAIN_COORDINATES.HEIGHT + MAP_PIN_MAIN_COORDINATES.CORNER);
   };
-  
   mainPin.addEventListener('mouseup', function () {
     mapShow.classList.remove('map--faded');
     window.form.adForm.classList.remove('ad-form--disabled');
@@ -79,7 +76,6 @@
       similarListElement.appendChild(setAllElements(addressesNew));
     }, onError);
   });
-  
   var mapCoords = {
     WIDTH: 1140,
     HEIGHT: 600
