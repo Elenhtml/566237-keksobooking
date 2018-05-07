@@ -50,7 +50,6 @@
     });
 
     block.insertAdjacentElement('beforeBegin', advertElement);
-    
     var closeButton = advertElement.querySelector('.popup__close');
 
     closeButton.addEventListener('click', function () {
