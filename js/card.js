@@ -24,7 +24,7 @@
     advertElement.querySelector('.popup__title').textContent = item.offer.title;
     advertElement.querySelector('.popup__text--address').textContent = item.offer.address;
     advertElement.querySelector('.popup__text--price').textContent = item.offer.price + '=/ночь';
-    advertElement.querySelector('.popup__type').textContent = window.data.TypeChoice[item.offer.type];
+    advertElement.querySelector('.popup__type').textContent = window.data.typeChoice[item.offer.type];
     advertElement.querySelector('.popup__text--capacity').textContent = item.offer.rooms + ' комнаты для ' + item.offer.guests + ' гостей';
     advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + item.offer.checkin + ', выезд до ' + item.offer.checkout;
     var featuresForFill = advertElement.querySelector('.popup__features');

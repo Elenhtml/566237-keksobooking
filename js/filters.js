@@ -13,7 +13,7 @@
     var selectFilters = formFilters.querySelectorAll('select');
     var featuresFilters = formFilters.querySelectorAll('input[type=checkbox]:checked');
 
-    var FilterRules = {
+    var filterRules = {
       'housing-type': 'type',
       'housing-rooms': 'rooms',
       'housing-guests': 'guests'
@@ -46,7 +46,7 @@
       selectFilters.forEach(function (item) {
         if (item.value !== 'any') {
           if (item.id !== 'housing-price') {
-            chosenOffers = filterByValue(item, FilterRules[item.id]);
+            chosenOffers = filterByValue(item, filterRules[item.id]);
           } else {
             chosenOffers = filterByPrice(item);
           }
