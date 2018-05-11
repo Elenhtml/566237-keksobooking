@@ -5,7 +5,7 @@
   window.data = {
     MAP_PIN_WIDTH: 40,
     MAP_PIN_HEIGHT: 40,
-    TypeChoice: {
+    typeChoice: {
       flat: 'Квартира',
       palace: 'Дворец',
       house: 'Дом',
