@@ -59,7 +59,6 @@
       });
     }
     if (chosenOffers.length) {
-      window.pins.setAllElements(chosenOffers);
       window.pins.similarListElement.appendChild(window.pins.setAllElements(chosenOffers));
     }
   };
