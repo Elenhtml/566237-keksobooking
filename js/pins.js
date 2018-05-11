@@ -77,8 +77,8 @@
     }, onError);
   });
   var mapCoords = {
-    WIDTH: 1140,
-    HEIGHT: 600
+    WIDTH: 1170,
+    HEIGHT: 704
   };
 
   mainPin.addEventListener('mousedown', function (evt) {
@@ -91,13 +91,13 @@
       if (x < 0) {
         x = 0;
       } else if (x > mapCoords.WIDTH) {
-        x = mapCoords.WIDTH;
+        x = mapCoords.WIDTH - window.data.MAP_PIN_WIDTH;
       }
 
       if (y < 0) {
         y = 0;
       } else if (y > mapCoords.HEIGHT) {
-        y = mapCoords.HEIGHT;
+        y = mapCoords.HEIGHT - window.data.MAP_PIN_HEIGHT * 2.5;
       }
 
       mainPin.style.top = y + 'px';
